@@ -40,7 +40,12 @@ Each ISO8583 message typically includes:
 <p align="center">
   <img src="resources/iso8583format.png" alt="ISO8583 Message Format" width="600"/>
 </p>
-
+**Message Type Indicator (MTI)** - It is a 4 digit where each digit place had it's own meaning
+- Consider an MTI with digits as ABCD
+1. A - Indications the ISO 8583 version being used
+-- 0 - Stands for 1987 Version
+-- 1 - Stands for 1993 Version
+-- 2 - Stands for 2003 Version
 ---
 
 ### 🧩 Phase 2 — Backend Development  
