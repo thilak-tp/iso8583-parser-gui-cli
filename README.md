@@ -115,6 +115,73 @@ If **MTI = 1200**:
 
 So, **MTI 1200** = *Financial Request message from Acquirer (1993 version)*.
 
+## 🧩 Bitmap in ISO 8583
+
+The **Bitmap** in ISO 8583 indicates which **Data Elements (Fields)** are present in the message.  
+Each bit (0 or 1) represents whether a corresponding **Data Element (DE)** exists in the message.
+
+---
+
+### 🧠 Concept Overview
+
+- The Bitmap is a **64-bit field** (or sometimes **128 bits**).
+- Each bit corresponds to a **Data Element (DE)** — for example:
+  - **Bit 1** → Secondary bitmap indicator  
+  - **Bit 2** → DE 2 (Primary Account Number)  
+  - **Bit 3** → DE 3 (Processing Code)  
+  - …and so on up to **Bit 64 / 128**
+- A bit value of:
+  - **1 → Field present in the message**
+  - **0 → Field absent**
+
+---
+
+### 🧮 Types of Bitmaps
+
+| Bitmap Type | Description | Length | Data Elements Covered |
+|--------------|--------------|---------|------------------------|
+| **Primary Bitmap** | Always present | 64 bits (8 bytes) | Fields **1–64** |
+| **Secondary Bitmap** | Present if bit 1 of Primary = 1 | 64 bits (8 bytes) | Fields **65–128** |
+| **Tertiary Bitmap** *(optional)* | Rare, for extended specs | 64 bits (8 bytes) | Fields **129–192** |
+
+---
+
+### 🧰 Representation Formats
+
+| Format | Description | Example |
+|---------|--------------|----------|
+| **Binary** | 64 bits of 0s and 1s | `1110001100000001000000000000000000000000000000000000000000000000` |
+| **Hexadecimal** | 16 hex characters (each hex = 4 bits) | `E301000000000000` |
+
+> 💡 **Tip:**  
+> In most ISO 8583 implementations, the Bitmap is transmitted as a **16-character hexadecimal string**.
+
+---
+
+### 🧩 Example Breakdown
+
+**Example Bitmap (Hex):**
+( 7230001000000000 ) Decimal = (0111001000110000000000000001000000000000000000000000000000000000) Binary
+
+
+**Interpretation:**
+
+| Bit | Value | Meaning |
+|-----|--------|----------|
+| 1 | 0 | No secondary bitmap |
+| 2 | 1 | DE 2 (Primary Account Number) present |
+| 3 | 1 | DE 3 (Processing Code) present |
+| 4 | 1 | DE 4 (Transaction Amount) present |
+| 11 | 1 | DE 11 (System Trace Audit Number) present |
+| ... | ... | Remaining bits = 0 → Fields absent |
+
+---
+
+### 🧾 Summary
+
+- The Bitmap acts as a **map of active fields** in an ISO 8583 message.
+- It ensures **variable-length message flexibility** — only necessary fields are transmitted.
+- Parsing the Bitmap is the **first step** before decoding the data fields.
 
 ---
 
