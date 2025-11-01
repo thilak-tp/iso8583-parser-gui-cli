@@ -44,10 +44,21 @@ Each ISO8583 message typically includes:
 **Message Type Indicator (MTI)** 
 - It is a 4 digit where each digit place had it's own meaning
 - Consider an MTI with digits as ABCD
-1. A - Indications the ISO 8583 version being used
+
+1. A - Indicates the ISO 8583 version being used
 - 0 - Stands for 1987 Version
 - 1 - Stands for 1993 Version
 - 2 - Stands for 2003 Version
+  
+2. B- Defines the Purpose of the message
+- 1 - Authorization message
+- 2 - Financial Message / Withdrawal
+- 3 - File actions (Batch Transfers etc.)
+- 4 - Reversal or chargeback
+- 5 - Reconciliation
+- 6 - Administrative
+- 7 - Free collection / Network Management
+- 8 - Reserved for private use
 ---
 
 ### 🧩 Phase 2 — Backend Development  
