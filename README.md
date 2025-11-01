@@ -349,6 +349,36 @@ Data Elements Present: 2, 3, 4, 7, 11, 12, 37, 41, 49
 
 ---
 
+### Hex to ASCII and Vice-versa conversions
+#### ✅ ASCII → Hex
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+
+std::string asciiToHex(const std::string& input) {
+    std::ostringstream oss;
+    for (unsigned char c : input)
+        oss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << (int)c;
+    return oss.str();
+}
+```
+#### ✅ Hex → ASCII
+```cpp
+#include <iostream>
+#include <sstream>
+
+std::string hexToAscii(const std::string& hex) {
+    std::string ascii;
+    for (size_t i = 0; i < hex.length(); i += 2) {
+        std::string byte = hex.substr(i, 2);
+        char chr = (char)(int)strtol(byte.c_str(), nullptr, 16);
+        ascii.push_back(chr);
+    }
+    return ascii;
+}
+```
+
 ### 🧩 Phase 2 — Backend Development  
 - Implement ISO8583 message structures (**MTI**, **Bitmaps**, **Data Elements**)  
 - Create flexible **packer/unpacker** logic  
