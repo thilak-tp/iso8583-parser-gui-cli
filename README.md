@@ -1,13 +1,64 @@
-# ISO8583 Parser CLI/Win32 GUI : For Packing and Unpacking messages
-The aim is to build a ISO8583 message parser that packs data into ISO8583 format or parsers an ISO8583 message into data elements.
-### Phase 1 : Research
-### Phase 2 : Backend
-### Phase 3 : CLI Application Integration
-### Phase 4 : GUI Application Intergration
+<!-- ISO8583 Parser README -->
+<h1 align="center">💳 ISO8583 Parser — CLI & Win32 GUI</h1>
+<p align="center">
+  <b>A C++ Utility for Packing and Unpacking ISO8583 Financial Messages</b><br>
+  <sub>By <b>Thilak</b> — Systems & Network Programming Enthusiast</sub>
+</p>
 
-##  Phase 1:
-- What is ISO8583?
--- ISO 8583 is an international standard for financial transaction card-orginated messages. It is widely used in systems like ATMs, POS Machines and payment gateways to communicate with each other.
+<p align="center">
+  <img src="https://img.shields.io/badge/language-C++17-blue.svg?style=for-the-badge">
+  <img src="https://img.shields.io/badge/platform-Windows-lightgrey.svg?style=for-the-badge">
+  <img src="https://img.shields.io/badge/build-CMake-orange.svg?style=for-the-badge">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge">
+</p>
 
-### Basic Message Format:
-![screenshot](resources/iso8583format.png)
+---
+
+## 🧭 Overview  
+
+**ISO 8583** is the **international standard** for systems that exchange electronic transactions made by cardholders using payment cards.  
+It defines message structure, field specifications, and flow for financial systems like **ATMs**, **POS terminals**, and **payment gateways**.
+
+This project implements a **C++ ISO8583 Message Parser** that can:  
+- 🧩 **Pack** data elements into a valid ISO8583 message  
+- 🔍 **Unpack** ISO8583 messages into readable data elements  
+- 💻 Run as a **Command-Line Tool** or a **Win32 GUI Application**
+
+---
+
+## ⚙️ Project Phases  
+
+### 🧠 Phase 1 — Research  
+> Understanding the ISO8583 standard, message structure, and field mappings.
+
+**ISO8583 Message Format Example:**  
+Each ISO8583 message typically includes:
+1. **Message Type Indicator (MTI)** – Defines the type of transaction (e.g., authorization, financial, reversal, etc.)  
+2. **Bitmap** – Indicates which data elements are present in the message  
+3. **Data Elements** – Contain actual transaction information such as card number, amount, date, etc.  
+
+<p align="center">
+  <img src="resources/iso8583format.png" alt="ISO8583 Message Format" width="600"/>
+</p>
+
+---
+
+### 🧩 Phase 2 — Backend Development  
+- Implement ISO8583 message structures (**MTI**, **Bitmaps**, **Data Elements**)  
+- Create flexible **packer/unpacker** logic  
+- Support **multiple ISO8583 versions** (1987 / 1993 / 2003)  
+- Handle **variable length** fields (LLVAR, LLLVAR)  
+- Ensure robust **error handling and validation**
+
+---
+
+### 💬 Phase 3 — CLI Application  
+A command-line interface for developers and testers to easily pack/unpack ISO8583 messages.  
+
+**Example Commands:**  
+```bash
+# Pack JSON input into ISO8583 message
+iso8583cli --pack input.json --version 1987
+
+# Unpack raw ISO8583 hex message into readable format
+iso8583cli --unpack message.hex
