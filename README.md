@@ -6,8 +6,8 @@ The aim is to build a ISO8583 message parser that packs data into ISO8583 format
 ### Phase 4 : GUI Application Intergration
 
 ##  Phase 1:
-What is ISO8583?
-ISO 8583 is an international standard for financial transaction card-orginated messages. It is widely used in systems like ATMs, POS Machines and payment gateways to communicate with each other.
+- What is ISO8583?
+-- ISO 8583 is an international standard for financial transaction card-orginated messages. It is widely used in systems like ATMs, POS Machines and payment gateways to communicate with each other.
 
 ### Basic Message Format:
 ![screenshot](resources/iso8583format.png)
