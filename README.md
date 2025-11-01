@@ -41,24 +41,81 @@ Each ISO8583 message typically includes:
   <img src="resources/iso8583format.png" alt="ISO8583 Message Format" width="600"/>
 </p>
 
-**Message Type Indicator (MTI)** 
-- It is a 4 digit where each digit place had it's own meaning
-- Consider an MTI with digits as ABCD
+## 🧾 Message Type Indicator (MTI)
 
-1. A - Indicates the ISO 8583 version being used
-- 0 - Stands for 1987 Version
-- 1 - Stands for 1993 Version
-- 2 - Stands for 2003 Version
-  
-2. B- Defines the Purpose of the message
-- 1 - Authorization message
-- 2 - Financial Message / Withdrawal
-- 3 - File actions (Batch Transfers etc.)
-- 4 - Reversal or chargeback
-- 5 - Reconciliation
-- 6 - Administrative
-- 7 - Free collection / Network Management
-- 8 - Reserved for private use
+The **MTI (Message Type Indicator)** in ISO 8583 is a 4-digit numeric field where **each digit has a specific meaning**.
+
+Let’s represent the MTI as **ABCD**:
+
+| Position | Meaning |
+|-----------|----------|
+| **A** | ISO 8583 version |
+| **B** | Message class (Purpose) |
+| **C** | Message function (Usage type) |
+| **D** | Message origin |
+
+---
+
+### 🔹 1. A — ISO 8583 Version
+
+| Value | Meaning |
+|--------|----------|
+| **0** | 1987 Version |
+| **1** | 1993 Version |
+| **2** | 2003 Version |
+
+---
+
+### 🔹 2. B — Message Class (Purpose)
+
+| Value | Meaning |
+|--------|----------|
+| **1** | Authorization Message |
+| **2** | Financial Message / Withdrawal |
+| **3** | File Actions (Batch Transfers, etc.) |
+| **4** | Reversal or Chargeback |
+| **5** | Reconciliation |
+| **6** | Administrative |
+| **7** | Fee Collection / Network Management |
+| **8** | Reserved for Private Use |
+
+---
+
+### 🔹 3. C — Message Function (Usage Type)
+
+| Value | Meaning |
+|--------|----------|
+| **0** | Request |
+| **1** | Response |
+| **2** | Advice |
+| **3** | Advice Response |
+| **4** | Notification |
+
+---
+
+### 🔹 4. D — Message Origin
+
+| Value | Meaning |
+|--------|----------|
+| **0** | Acquirer |
+| **1** | Acquirer Repeat |
+| **2** | Issuer |
+| **3** | Issuer Repeat |
+| **4** | Other (Switch, Network, etc.) |
+
+---
+
+### 🧠 Example
+
+If **MTI = 1200**:
+- **1** → 1993 Version  
+- **2** → Financial Message  
+- **0** → Request  
+- **0** → Originated from Acquirer  
+
+So, **MTI 1200** = *Financial Request message from Acquirer (1993 version)*.
+
+
 ---
 
 ### 🧩 Phase 2 — Backend Development  
